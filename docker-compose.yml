@@ -9,6 +9,7 @@ services:
       - JDBC_PASSWORD=password
       - SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE=80
       - SPRING_DATASOURCE_TOMCAT_MAX_IDLE=30
+      - JAVACODETEST_LOGGING_LEVEL=INFO
     ports:
       - 8080:8080
     depends_on:
