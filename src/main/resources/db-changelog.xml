@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="javacodetestuser" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="wallets"/>
+            </not>
+        </preConditions>
+        <createTable tableName="wallets">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="balance" type="numeric(16, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="javacodetestuser" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <rowCount tableName="wallets" expectedRows="0"/>
+        </preConditions>
+        <insert tableName="wallets">
+            <column name="id" value="d2c69875-a9db-4973-8193-3b1296ac281b"/>
+            <column name="balance" valueNumeric="1000.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

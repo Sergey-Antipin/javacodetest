@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    restart: always
+    container_name: app
+    environment:
+      - JDBC_URL=jdbc:postgresql://db:5432/javacodetest
+      - JDBC_USER=javacodetestuser
+      - JDBC_PASSWORD=password
+      - SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE=80
+      - SPRING_DATASOURCE_TOMCAT_MAX_IDLE=30
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_USER: javacodetestuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: javacodetest
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
