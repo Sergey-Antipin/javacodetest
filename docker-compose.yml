@@ -12,6 +12,8 @@ services:
       - JAVACODETEST_LOGGING_LEVEL=INFO
     ports:
       - 8080:8080
+    volumes:
+      - ./src/main/resources/logback.xml:/usr/local/tomcat/webapps/javacodetest/WEB-INF/classes/logback.xml
     depends_on:
       - db
 
